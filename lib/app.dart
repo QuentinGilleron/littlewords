@@ -3,6 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:littlewords/provider/username.provider.dart';
 
+import 'routes/error/error.route.dart';
+import 'routes/home/home.route.dart';
+import 'routes/loading/loading.route.dart';
+import 'routes/login/login.route.dart';
+
 
 class LittleWordsApp extends StatelessWidget {
   const LittleWordsApp({Key? key}) : super(key: key);
@@ -32,17 +37,17 @@ class _Routing extends ConsumerWidget {
   Widget _whenData(String? username) {
 
     if(null == username){
-      return LoginRoute();
+      return const LoginRoute();
     }
-    return HomeRoute();
+    return const HomeRoute();
   }
 
   Widget _whenError(Object error, StackTrace stackTrace) {
-    return ErrorRoute();
+    return const ErrorRoute();
 
   }
 
   Widget _whenLoading() {
-    return LoadingRoute();
+    return const LoadingRoute();
   }
 }
