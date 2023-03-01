@@ -8,9 +8,10 @@ class LittlewordLogo extends StatelessWidget {
       width: 128,
       height: 128,
       decoration: BoxDecoration(
-        color: Colors.lightGreen,
+
+        color: Colors.lightGreenAccent,
         shape: BoxShape.circle,
-        border: Border.all(color: Colors.lightGreenAccent, width: 8)
+        border: Border.all(color: Colors.lightGreen, width: 8)
       ),
     );
   }
