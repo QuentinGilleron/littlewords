@@ -3,6 +3,9 @@ import 'package:littlewords/beans/dto/word.dto.dart';
 
 part 'words.dto.g.dart';
 
+
+// Géneration du .g.dart avec la commande:
+// flutter pub run build_runner build
 @JsonSerializable()
 class WordsDTO {
   WordsDTO(this.data);
