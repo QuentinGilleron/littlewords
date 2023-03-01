@@ -39,7 +39,7 @@ class _Routing extends ConsumerWidget {
     if(null == username){
       return LoginRoute();
     }
-    return const HomeRoute();
+    return HomeRoute();
   }
 
   Widget _whenError(Object error, StackTrace stackTrace) {
