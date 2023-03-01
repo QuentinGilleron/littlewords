@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:littlewords/widgets/littlewords_logo.dart';
 class LoginRoute extends StatelessWidget {
-  const LoginRoute({Key? key}) : super(key: key);
+  LoginRoute({Key? key}) : super(key: key);
+
+  final _txtController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -15,6 +17,7 @@ class LoginRoute extends StatelessWidget {
             Padding(
               padding: EdgeInsets.all(8.0), // Espace un peu sur les coters
               child: TextField(
+                controller: _txtController,
           decoration: InputDecoration(
               fillColor: Colors.red,
               filled: true,
@@ -24,7 +27,7 @@ class LoginRoute extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(top:4.0, left: 8.0, right: 8.0, bottom: 16.0),
           child: ElevatedButton(
-              onPressed: null,
+              onPressed: _onPressed,
               style: ElevatedButton.styleFrom(
                 minimumSize: Size.fromHeight(48)
               ),
@@ -34,5 +37,10 @@ class LoginRoute extends StatelessWidget {
         )
       ]),
     );
+  }
+
+  void _onPressed() {
+    var text = _txtController.text;
+    print('Test:$text');
   }
 }

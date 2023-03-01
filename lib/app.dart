@@ -37,7 +37,7 @@ class _Routing extends ConsumerWidget {
   Widget _whenData(String? username) {
 
     if(null == username){
-      return const LoginRoute();
+      return LoginRoute();
     }
     return const HomeRoute();
   }
