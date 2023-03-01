@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:littlewords/widgets/littlewords_logo.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../provider/username.provider.dart';
 class LoginRoute extends StatelessWidget {
   LoginRoute({Key? key}) : super(key: key);
 
@@ -26,21 +30,44 @@ class LoginRoute extends StatelessWidget {
             ),
         Padding(
           padding: const EdgeInsets.only(top:4.0, left: 8.0, right: 8.0, bottom: 16.0),
-          child: ElevatedButton(
-              onPressed: _onPressed,
-              style: ElevatedButton.styleFrom(
-                minimumSize: Size.fromHeight(48)
-              ),
-              child: const Text('Enregistrer son  nom'),
-
+          child: SaveUsernameButton(
+              controller: _txtController
           ),
         )
       ]),
     );
   }
 
-  void _onPressed() {
-    var text = _txtController.text;
-    print('Test:$text');
+}
+
+
+class SaveUsernameButton extends ConsumerWidget {
+  const SaveUsernameButton({
+    Key? key,
+    required this.controller,
+  }) : super(key: key);
+
+  final TextEditingController controller;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return ElevatedButton(
+      onPressed: () => _onPressed(ref),
+      style: ElevatedButton.styleFrom(
+          minimumSize: Size.fromHeight(48)
+      ),
+      child: const Text('Enregistrer son  nom'),
+
+    );
+  }
+
+  void _onPressed(WidgetRef ref) {
+    var text = controller.text;
+    // print('Test:$text'); // Print le nom saisi
+    SharedPreferences.getInstance().then((prefs) {
+      prefs.setString('username', text);
+      ref.refresh(usernameProvider);
+    });
   }
 }
+
