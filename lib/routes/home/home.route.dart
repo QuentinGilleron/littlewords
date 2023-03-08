@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:littlewords/routes/home/page1.dart';
 import 'package:littlewords/routes/home/page2.dart';
 
 import '../../db/db.helper.dart';
@@ -74,9 +75,7 @@ class _Page1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Center(
-          child: Text("Page 1")
-      ),
+      child: Page1(),
     );
   }
 }

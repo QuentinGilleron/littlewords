@@ -13,9 +13,10 @@ class WordCard extends StatelessWidget {
       decoration: BoxDecoration(
         border: Border.all(color: Colors.black),
         borderRadius: BorderRadius.circular(10),
+        color: Colors.grey[200],
       ),
       child: Padding(
-        padding: EdgeInsets.all(8.0),
+        padding: EdgeInsets.all(20.0),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [

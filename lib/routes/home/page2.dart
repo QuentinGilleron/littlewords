@@ -28,7 +28,10 @@ class Page2 extends StatelessWidget {
                 itemCount: data.length,
                   itemBuilder: (context, index){
                     WordDTO word = data[index];
-                    return WordCard(word: word);
+                    return Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: WordCard(word: word),
+                    );
                   }
               );
             }),
