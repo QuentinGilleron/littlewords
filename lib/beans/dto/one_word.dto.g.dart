@@ -6,13 +6,13 @@ part of 'one_word.dto.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-OneWordsDTO _$OneWordsDTOFromJson(Map<String, dynamic> json) => OneWordsDTO(
+OneWordDTO _$OneWordsDTOFromJson(Map<String, dynamic> json) => OneWordDTO(
       json['data'] == null
           ? null
           : WordDTO.fromJson(json['data'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$OneWordsDTOToJson(OneWordsDTO instance) =>
+Map<String, dynamic> _$OneWordsDTOToJson(OneWordDTO instance) =>
     <String, dynamic>{
       'data': instance.data,
     };
