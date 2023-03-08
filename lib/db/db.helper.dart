@@ -14,9 +14,24 @@ class DbHelper{
     _db = database;
   }
 
+  static const String createTable = '''
+  Create table if not exists user (
+    uid integer primary key not null,
+    username varchar not null
+  )
+  ''';
+
+  static const String dropTable = '''
+    drop table if not exists user
+  ''';
+
   static  _onCreate(Database db, int version) {
+    db.execute(createTable);
   }
 
   static _onUpgrade(Database db, int oldVersion, int newVersion) {
+    db.execute(dropTable);
+
+    _onCreate(db, newVersion);
   }
 }
