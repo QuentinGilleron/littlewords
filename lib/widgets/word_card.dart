@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:littlewords/beans/dto/word.dto.dart';
 
 
 class WordCard extends StatelessWidget {
-  const WordCard({Key? key}) : super(key: key);
+  const WordCard({Key? key, required this.word}) : super(key: key);
+
+  final WordDTO word;
 
   @override
   Widget build(BuildContext context) {
@@ -18,12 +21,12 @@ class WordCard extends StatelessWidget {
           children: [
             Row(
               children: [
-                Text("Tom"),
+                Text(word.author!),
                 Spacer(),
-                Text("#109876"),
+                Text("#" + word.uid!.toString(), style: TextStyle(color: Colors.grey),),
               ],
             ),
-        Text('Contenu du petit mot que j\'ai récupéré sur la carte. Et qui est dans mon sac à outils mystère.'),
+        Text(word.content!), // On affiche le contenu du mot.
         ],
         ),
       ),

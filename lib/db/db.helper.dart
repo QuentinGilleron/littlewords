@@ -5,7 +5,7 @@ import 'package:sqflite/sqflite.dart';
 
 class DbHelper{
   static const String _dbName = 'littlewords.db';
-  static const int _dbVersion = 1; // Numéro de version du schéma de la base de données
+  static const int _dbVersion = 2; // Numéro de version du schéma de la base de données
 
   static Database? _db;
 
@@ -21,9 +21,12 @@ class DbHelper{
   static const String tableName = "words";
 
   static const String createTable = '''
-  Create table if not exists $tableName (
-    uid integer primary key not null,
-    username varchar not null
+  CREATE TABLE IF NOT EXISTS $tableName (
+    uid INTEGER primary key NOT NULL,
+    author VARCHAR NOT NULL,
+    content VARCHAR NOT NULL,
+    latitude REAL NULL,
+    longitude REAL NULL
   )
   ''';
 
@@ -47,7 +50,7 @@ class DbHelper{
   }
 
   // Recupére toutes les lignes de la table.
-  Future<List<WordDTO>> findAll() async{
+  static Future<List<WordDTO>> findAll() async{
     final List<Map<String, Object?>> resultSet = await _db!.query(tableName);
     if(resultSet.isEmpty){
       return [];

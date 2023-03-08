@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:littlewords/routes/home/page2.dart';
 
+import '../../db/db.helper.dart';
 import '../../widgets/word_card.dart';
 
 class HomeRoute extends StatefulWidget {
@@ -85,7 +87,7 @@ class _Page2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Center(child: WordCard()),
+      child: Page2(),
     );
   }
 }
