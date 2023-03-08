@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:littlewords/beans/dto/word.dto.dart';
 import 'package:littlewords/provider/words_around.provider.dart';
+import 'package:littlewords/routes/home/word_around.dart';
 import 'package:littlewords/widgets/word_card.dart';
 
 import '../../widgets/word_lite_card.dart';
@@ -25,7 +26,7 @@ class Page1 extends ConsumerWidget {
         WordDTO word = data[index];
         return Padding(
           padding: const EdgeInsets.all(8.0),
-          child: WordLiteCard(word: word),
+          child: WordAround(word: word),
         );
       },
     );
