@@ -2,7 +2,7 @@ import 'package:sqflite/sqflite.dart';
 
 class DbHelper{
   static const String _dbName = 'littlewords.db';
-  static const int _dbVersion = 1;
+  static const int _dbVersion = 1; // Numéro de version du schéma de la base de données
 
   static Database? _db;
 
