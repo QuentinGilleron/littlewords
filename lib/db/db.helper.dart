@@ -17,6 +17,7 @@ class DbHelper{
     _db = database;
   }
 
+
   static const String tableName = "words";
 
   static const String createTable = '''
@@ -39,20 +40,20 @@ class DbHelper{
 
     _onCreate(db, newVersion);
   }
-
-  void insert(WordDTO word){
+  // Inserer une ligne dans la table.
+  static void insert(WordDTO word){
     final Map<String, dynamic> wordAsMap = word.toJson();
     _db!.insert(tableName, wordAsMap);
   }
 
-  // recupére toutes les lignes de la table
+  // Recupére toutes les lignes de la table.
   Future<List<WordDTO>> findAll() async{
     final List<Map<String, Object?>> resultSet = await _db!.query(tableName);
     if(resultSet.isEmpty){
       return [];
     }
 
-    // convertir chaque ligne de resultSet en wordDTO
+    // Convertir chaque ligne de resultSet en wordDTO.
     final List<WordDTO> words = [];
     for (var map in resultSet) {
       var wordDTO = WordDTO.fromJson(map);
