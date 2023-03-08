@@ -1,3 +1,6 @@
+import 'dart:convert';
+
+import 'package:littlewords/beans/dto/word.dto.dart';
 import 'package:sqflite/sqflite.dart';
 
 class DbHelper{
@@ -14,15 +17,17 @@ class DbHelper{
     _db = database;
   }
 
+  static const String tableName = "words";
+
   static const String createTable = '''
-  Create table if not exists user (
+  Create table if not exists $tableName (
     uid integer primary key not null,
     username varchar not null
   )
   ''';
 
   static const String dropTable = '''
-    drop table if not exists user
+    drop table if not exists $tableName
   ''';
 
   static  _onCreate(Database db, int version) {
@@ -33,5 +38,26 @@ class DbHelper{
     db.execute(dropTable);
 
     _onCreate(db, newVersion);
+  }
+
+  void insert(WordDTO word){
+    final Map<String, dynamic> wordAsMap = word.toJson();
+    _db!.insert(tableName, wordAsMap);
+  }
+
+  // recupére toutes les lignes de la table
+  Future<List<WordDTO>> findAll() async{
+    final List<Map<String, Object?>> resultSet = await _db!.query(tableName);
+    if(resultSet.isEmpty){
+      return [];
+    }
+
+    // convertir chaque ligne de resultSet en wordDTO
+    final List<WordDTO> words = [];
+    for (var map in resultSet) {
+      var wordDTO = WordDTO.fromJson(map);
+      words.add(wordDTO);
+    }
+    return words;
   }
 }
