@@ -33,9 +33,14 @@ class WordAround extends ConsumerWidget {
           if (oneWordDTO.data != null) {
             DbHelper.insert(oneWordDTO.data!);
 
+            const snackBar = SnackBar(
+              content: Text('Mot récuperé !'),
+            );
+            ScaffoldMessenger.of(context).showSnackBar(snackBar);
 
           }
           ref.refresh(wordsAroundProvider);
+
 
           // TODO
           // 1. Afficher une snackbar
