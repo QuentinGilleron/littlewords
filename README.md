@@ -11,7 +11,16 @@ Application android codé en Flutter sur Android Studio. Cette application est u
 
 ## Objectifs du projet :
 
-[ ] 1. Détruire un mot ramassé. DELETE en BDD locale. L'élément détruit doit disparaitre  
+[ ] 1.  Détruire un mot ramassé.
+        DELETE en BDD locale.
+        L'élément détruit doit disparaitre de la liste automatiquement (provider ?)
+
+[ ] 2.  Redéposer un mot sur la carte
+        PUT https://backend.smallwords.samyn.ovh/word/{uid}
+        {content: String, latitude: Float, longitude: Float}
+
+[ ] 3.  Afficher une carte dans le premier onglet à la place de la liste
+        Utiliser la dépendance : flutter_map et word_around.provider
 
 
 ## Template :
