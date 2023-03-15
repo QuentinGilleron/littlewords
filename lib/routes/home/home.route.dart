@@ -68,7 +68,7 @@ class _HomeRouteState extends State<HomeRoute> {
                               padding: MediaQuery.of(context).viewInsets,
                               child: CreateWordModalContent(),
                             );
-                          });
+                        });
                     },
                     child: const Icon(Icons.add),
                   );

@@ -71,6 +71,3 @@ class SaveUsernameButton extends ConsumerWidget {
   }
 }
 
-// var dio = ref.read(dioProvider);
-// dio.post('/word', data: wordDTO(null, 'test', 'test', 1.0, 1.0))
-// .then((value) => print(value.toString()));
