@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:riverpod/src/framework.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../beans/dto/word.dto.dart';
 import '../provider/device_location.provider.dart';
 import '../provider/dio.provider.dart';
+import '../provider/username.provider.dart';
 import '../routes/home/word_around.dart';
 
 class CreateWordModalContent extends StatefulWidget {
@@ -78,9 +80,14 @@ class wordSaveButton extends ConsumerWidget {
     return controller.text.trim().isEmpty;
   }
 
-  void _envoieMessage(final WidgetRef ref, LatLng? dataLocation) {
+  void _envoieMessage(final WidgetRef ref, LatLng? dataLocation) async {
 
-    final String author = controller!.text;
+
+    var prefs = await SharedPreferences.getInstance();
+    const String key = 'username';
+    final String? username = prefs.getString(key);
+
+    final String? author = username;
     final String content = controller!.text;
 
     print('author: $author -- content: $content');
@@ -114,30 +121,4 @@ class wordSaveButton extends ConsumerWidget {
     return const Center(child: CircularProgressIndicator());
   }
 }
-
-// var dio = ref.read(dioProvider);
-// dio.post('/word', data: wordDTO(null, 'test', 'test', 1.0, 1.0))
-// .then((value) => print(value.toString()));
-
-
-// TODO ():
-// 1. Afficher un champs texte et un bouton de validation en dessous -- ✅
-// 2. Desactiver le boutons le champs texte est vide (trim) -- ✅
-// 3. Créer un ConsumerWidget pour représenter le bouton -- ✅
-
-// 3.1. Dans ce Widget utiliser le device_location.provider.dart pour récupérer la position -- ✅
-
-// 4. Construire un WordDTO avec :
-// - uid : null
-// - content : valeur du champs text
-// - author : nom utilisateur stocké dans les sharedPrefs
-// - latitude et longitude: données du device location provider
-
-// 5. Utiliser de dio.provider pour faire l'appel POST au service / word
-// 6. Quand l'appel POST est terminé, on ferme le formulaire de création
-
-// BONUS :
-// - Donner le focus au champ text dès l'ouverture de la modal -- ✅
-// - Limiter le nombre de caractère saisissable à 144
-// - Afficher un compte x/144
 

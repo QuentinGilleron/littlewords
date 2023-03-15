@@ -24,6 +24,28 @@ Application android codé en Flutter sur Android Studio. Cette application est u
 [ ] 3.  Afficher une carte dans le premier onglet à la place de la liste
         Utiliser la dépendance : flutter_map et word_around.provider
 
+## Todo du TP : 
+
+1. Afficher un champs texte et un bouton de validation en dessous -- ✅
+2. Desactiver le boutons le champs texte est vide (trim) -- ✅
+3. Créer un ConsumerWidget pour représenter le bouton -- ✅
+
+3.1. Dans ce Widget utiliser le device_location.provider.dart pour récupérer la position -- ✅
+
+4. Construire un WordDTO avec : -- ✅
+- uid : null -- ✅
+- content : valeur du champs text -- ✅
+- author : nom utilisateur stocké dans les sharedPrefs -- ✅
+- latitude et longitude: données du device location provider -- ✅
+
+5. Utiliser de dio.provider pour faire l'appel POST au service / word -- ✅
+6. Quand l'appel POST est terminé, on ferme le formulaire de création et on refresh
+
+BONUS :
+- Donner le focus au champ text dès l'ouverture de la modal -- ✅
+- Limiter le nombre de caractère saisissable à 144
+- Afficher un compte x/144
+
 
 ## Template :
 

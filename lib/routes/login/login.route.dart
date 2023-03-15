@@ -40,7 +40,6 @@ class LoginRoute extends StatelessWidget {
 
 }
 
-
 class SaveUsernameButton extends ConsumerWidget {
   const SaveUsernameButton({
     Key? key,
