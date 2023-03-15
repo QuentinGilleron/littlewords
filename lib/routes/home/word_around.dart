@@ -40,10 +40,6 @@ class WordAround extends ConsumerWidget {
 
           }
           ref.refresh(wordsAroundProvider);
-
-
-          // TODO
-          // 1. Afficher une snackbar
         });
 
       },

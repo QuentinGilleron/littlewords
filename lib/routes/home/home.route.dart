@@ -4,6 +4,7 @@ import 'package:littlewords/routes/home/page1.dart';
 import 'package:littlewords/routes/home/page2.dart';
 
 import '../../db/db.helper.dart';
+import '../../widgets/create_word_modal_content.dart';
 import '../../widgets/word_card.dart';
 
 class HomeRoute extends StatefulWidget {
@@ -59,7 +60,15 @@ class _HomeRouteState extends State<HomeRoute> {
                 builder: (context, ref, child) {
                   return FloatingActionButton(
                     onPressed: () {
-                      // ref.read(counterProvider).increment();
+                      showModalBottomSheet(
+                          context: context,
+                          isScrollControlled: true,
+                          builder: (context) {
+                            return Padding(
+                              padding: MediaQuery.of(context).viewInsets,
+                              child: CreateWordModalContent(),
+                            );
+                          });
                     },
                     child: const Icon(Icons.add),
                   );

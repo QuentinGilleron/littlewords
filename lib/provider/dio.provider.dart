@@ -6,6 +6,7 @@ final dioProvider = Provider<Dio>((ref) {
     baseUrl: 'https://backend.smallwords.samyn.ovh',
     connectTimeout: const Duration(seconds: 10),
     receiveTimeout: const Duration(seconds: 10),
+    contentType: Headers.jsonContentType,
   ));
   return dio;
 });
