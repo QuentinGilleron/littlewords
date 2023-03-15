@@ -9,6 +9,9 @@
 
 Application android codé en Flutter sur Android Studio. Cette application est un jeu de ramassage de mots, qui permettra à l'utilisateur de ramasser des mots et les remettre par terre pour que les autres puisse ramasser le mots pour le modifier ou le rejeter par terre.
 
+## Objectifs du projet :
+
+[ ] 1. Détruire un mot ramassé. DELETE en BDD locale. L'élément détruit doit disparaitre  
 
 
 ## Template :
