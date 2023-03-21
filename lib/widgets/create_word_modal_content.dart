@@ -25,7 +25,7 @@ class _CreateWordModalContentState extends State<CreateWordModalContent> {
     super.initState();
     txtController = TextEditingController();
     txtController!.addListener(() {
-      // Permet de forcer le redessin et d'activer ou pas be bouton send
+      // Permet de forcer le redessin et d'activer ou pas le bouton send
       setState(() {});
     });
   }
@@ -41,6 +41,7 @@ class _CreateWordModalContentState extends State<CreateWordModalContent> {
             child: TextField(
               autofocus: true,
               controller: txtController,
+              maxLength: 144,
 
             decoration: InputDecoration(
               // Faire un trait en dessous du champs texte
@@ -72,7 +73,8 @@ class wordSaveButton extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
 
     return ref.watch(deviceLocationProvider)
-       .when(data: (data) => _whenData(data, ref), error: _whenError, loading: _whenLoading);
+       .when(data: (data) => _whenData(data, ref, context), error: _whenError, loading: _whenLoading);
+
 
   }
 
@@ -80,7 +82,7 @@ class wordSaveButton extends ConsumerWidget {
     return controller.text.trim().isEmpty;
   }
 
-  void _envoieMessage(final WidgetRef ref, LatLng? dataLocation) async {
+  void _envoieMessage(final WidgetRef ref, LatLng? dataLocation, BuildContext context) async {
 
 
     var prefs = await SharedPreferences.getInstance();
@@ -100,11 +102,16 @@ class wordSaveButton extends ConsumerWidget {
         .post('/word', data: WordDTO(null, author, content, latitude, longitude))
         .then((value) => print(value.toString()));
 
+    // Fermer la modal
+    Navigator.of(context).pop();
+    // Rafraichir la liste des mots
+    ref.refresh(deviceLocationProvider);
+
   }
 
-  Widget _whenData(LatLng? data, WidgetRef ref) {
+  Widget _whenData(LatLng? data, WidgetRef ref, BuildContext context) {
     return ElevatedButton(
-      onPressed: _isTextFieldFilled(controller!) ? null : () => _envoieMessage(ref, data) ,
+      onPressed: _isTextFieldFilled(controller!) ? null : () => _envoieMessage(ref, data, context) ,
       style: ElevatedButton.styleFrom(
           minimumSize: Size.fromHeight(48)
       ),
