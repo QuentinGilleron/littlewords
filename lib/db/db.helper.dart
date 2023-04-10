@@ -17,7 +17,6 @@ class DbHelper{
     _db = database;
   }
 
-
   static const String tableName = "words";
 
   static const String createTable = '''
